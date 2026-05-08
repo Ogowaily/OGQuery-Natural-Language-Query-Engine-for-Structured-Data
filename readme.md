@@ -9,6 +9,7 @@ It is a purpose-built engine that translates natural language directly into opti
 > OGQuery detects intent, routes each condition to the right index, intersects results, and returns a clean natural language answer — in milliseconds.
 
 ---
+<img width="1536" height="1024" alt="ChatGPT Image May 8, 2026, 10_39_04 PM" src="https://github.com/user-attachments/assets/0abec7a1-39da-4729-8d65-eb53b0ae1e32" />
 
 ## What makes OGQuery different
 

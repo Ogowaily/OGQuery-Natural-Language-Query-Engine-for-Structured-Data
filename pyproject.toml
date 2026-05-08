@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ogquery"
+version = "0.1.0"
+description = "Natural Language Query Engine for Structured Data"
+requires-python = ">=3.9"
+authors = [{ name="Omar Gowaily" }]
+readme = "README.md"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "faiss-cpu",
+    "sentence-transformers",
+    "groq",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "python-dotenv",
+    "tqdm",
+    "python-multipart"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

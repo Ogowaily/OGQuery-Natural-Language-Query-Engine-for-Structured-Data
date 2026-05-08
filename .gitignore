@@ -1,0 +1,58 @@
+# ======================
+# Python basics
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# ======================
+# Virtual environments
+# ======================
+venv/
+env/
+clean_env/
+.venv/
+data/
+data
+
+# ======================
+# Build / packaging
+# ======================
+dist/
+build/
+*.egg-info/
+dist/
+*.egg
+clean_env/
+.env/
+.env
+
+
+# ======================
+ 
+# ======================
+.ipynb_checkpoints/
+
+# ======================
+# Environment variables
+# ======================
+.env
+
+# ======================
+# IDEs
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+.egg-info/
+.egg/
+ogquide.egg-info/
+ogquide.egg/
+ogquide.egg-info

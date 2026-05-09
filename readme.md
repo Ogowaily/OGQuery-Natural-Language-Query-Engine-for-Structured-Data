@@ -148,7 +148,7 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
                    ▼
 ┌──────────────────────────────────────┐
 │           Dataset Loader             │
-│       (ingestion/loader.py)          │
+│       (ingestion>loader)          │
 │                                      │
 │  - Read CSV                          │
 │  - Create dataframe                  │
@@ -159,7 +159,7 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
                    ▼
 ┌──────────────────────────────────────┐
 │          Schema Detector             │
-│        (schema/detector.py)          │
+│        (schema/registry)             │
 │                                      │
 │  Detect column types:                │
 │  - semantic                          │
@@ -171,7 +171,7 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
                    ▼
 ┌──────────────────────────────────────┐
 │          Schema Registry             │
-│        (schema/registry.py)          │
+│        (schema/registry)          │
 │                                      │
 │  Store dataset metadata              │
 │  and column mappings                 │
@@ -180,7 +180,7 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
                    ▼
 ┌──────────────────────────────────────┐
 │            Column Router             │
-│       (ingestion/router.py)          │
+│       (ingestion/router)          │
 │                                      │
 │  Route each column to the            │
 │  appropriate storage builder         │
@@ -202,7 +202,7 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
          ▼
 ┌──────────────────────────────────────┐
 │         Artifact Persistence         │
-│      (ingestion/persist.py)          │
+│      (ingestion/persistence.py)      │
 │                                      │
 │ Save generated indexes               │
 │ and metadata files                   │

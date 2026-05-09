@@ -129,7 +129,97 @@ This means ingestion is fast, indexes stay small, and retrieval is precise — w
 ---
 
 ## Data Routing System
+```
+┌──────────────────────────────────────┐
+│          Dataset Upload              │
+│       engine.upload(csv_file)        │
+│            (core.py)                 │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│         Ingestion Pipeline           │
+│      (ingestion/pipeline.py)         │
+│                                      │
+│  Main orchestration layer            │
+│  for dataset ingestion               │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│           Dataset Loader             │
+│       (ingestion/loader.py)          │
+│                                      │
+│  - Read CSV                          │
+│  - Create dataframe                  │
+│  - Normalize columns                 │
+│  - Handle null values                │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│          Schema Detector             │
+│        (schema/detector.py)          │
+│                                      │
+│  Detect column types:                │
+│  - semantic                          │
+│  - numeric                           │
+│  - categorical                       │
+│  - identifiers                       │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│          Schema Registry             │
+│        (schema/registry.py)          │
+│                                      │
+│  Store dataset metadata              │
+│  and column mappings                 │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│            Column Router             │
+│       (ingestion/router.py)          │
+│                                      │
+│  Route each column to the            │
+│  appropriate storage builder         │
+└────────┬─────────────────┬───────────┘
+         │                 │
+         ▼                 ▼
 
+┌────────────────┐  ┌──────────────────────────┐
+│ Semantic Index │  │     Structured Indexes    │
+│                │  │                           │
+│ encoder.py     │  │ numeric_store.py         │
+│ semantic_store │  │ mapping_store.py         │
+│                │  │ row_store.py             │
+│                │  │                           │
+│ FAISS indexes  │  │ numeric / categorical /  │
+│ per column     │  │ row storage              │
+└────────┬───────┘  └──────────────────────────┘
+         │
+         ▼
+┌──────────────────────────────────────┐
+│         Artifact Persistence         │
+│      (ingestion/persist.py)          │
+│                                      │
+│ Save generated indexes               │
+│ and metadata files                   │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│         Generated Artifacts          │
+│                                      │
+│  registry.json                       │
+│  meta.json                           │
+│  *.faiss                             │
+│  *.idx                               │
+│  *.pkl                               │
+│  rows.db                             │
+└──────────────────────────────────────┘
+```
 Every query condition is routed to the most efficient storage layer before any data is touched.
 
 ### Storage by data type

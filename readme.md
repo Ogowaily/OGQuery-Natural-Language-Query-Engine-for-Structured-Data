@@ -494,8 +494,4 @@ Run a natural language query against a registered dataset.
 
 **Omar Gowaily**
 
----
-
-## License
-
-See [LICENSE](./LICENSE) for details.
+ 
